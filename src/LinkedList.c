@@ -18,7 +18,7 @@ LinkedList *LinkedList_create(node_t *node) {
 	LinkedList *list = (LinkedList *)malloc(sizeof(LinkedList));
 
 	if (list == NULL) {
-		printf("Memory allocation failed for node_t");
+		printf("Memory allocation failed for LinkedList");
 		exit(EXIT_FAILURE);
 	}
 
