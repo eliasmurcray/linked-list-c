@@ -51,3 +51,15 @@ void *LinkedList_get(LinkedList *list, size_t index) {
 	}
 	return n->value;
 }
+
+void LinkedList_append(LinkedList *list, void *value) {
+	node_t *new_node = Node_create(value);
+	if (list->head == NULL) {
+		list->head = new_node;
+		return;
+	}
+
+	node_t *n = list->head;
+	while (n->next != NULL) n = n->next;
+	n->next = new_node;
+}

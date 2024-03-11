@@ -27,9 +27,14 @@ void print_list(LinkedList *list) {
 int main() {
 	node_t *n = Node_create(&(int){4});
 	LinkedList *list = LinkedList_create(n);
-	list->head->next = Node_create(NULL);
-	void *v = LinkedList_get(list, 0);
-	printf("%d\n", *(int *)v);
+	LinkedList_append(list, NULL);
+	LinkedList_append(list, &(int){10});
+	void *v = LinkedList_get(list, 1);
+	if (v == NULL) {
+		printf("NULL\n");
+	} else {
+		printf("%d\n", *(int *)v);
+	}
 	print_list(list);
 	LinkedList_destroy(list);
 
