@@ -6,21 +6,19 @@ void print_list(LinkedList *list) {
 		printf("List is empty");
 	}
 
-	printf("{");
-
 	node_t *n = list->head;
 	while (n->next != NULL) {
 		if (n->value == NULL) {
-			printf(" , ");
+			printf("NULL -> ");
 		} else {
-			printf("%d, ", *(int *)n->value);
+			printf("%d -> ", *(int *)n->value);
 		}
 		n = n->next;
 	}
 	if (n->value == NULL) {
-		printf(" }\n");
+		printf("NULL\n");
 	} else {
-		printf("%d}\n", *(int *)n->value);
+		printf("%d\n", *(int *)n->value);
 	}
 }
 
