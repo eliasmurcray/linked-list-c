@@ -6,7 +6,7 @@ void print_list(LinkedList *list) {
 		printf("List is empty");
 	}
 
-	node_t *n = list->head;
+	Node *n = list->head;
 	while (n->next != NULL) {
 		if (n->value == NULL) {
 			printf("NULL -> ");
@@ -23,7 +23,7 @@ void print_list(LinkedList *list) {
 }
 
 int main() {
-	node_t *n = Node_create(&(int){4});
+	Node *n = Node_create(&(int){4});
 	LinkedList *list = LinkedList_create(n);
 	LinkedList_append(list, NULL);
 	LinkedList_append(list, &(int){10});
@@ -36,7 +36,9 @@ int main() {
 	}
 	LinkedList_insert(list, 5, &(int){20});
 	print_list(list);
-	LinkedList_insert(list, 1, &(int){20});
+	LinkedList_insert(list, 0, &(int){20});
+	print_list(list);
+	LinkedList_insert(list, 3, &(int){12});
 	print_list(list);
 	LinkedList_insert(list, -1, &(int){15});
 	LinkedList_destroy(list);

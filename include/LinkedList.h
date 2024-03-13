@@ -8,15 +8,15 @@
 typedef struct Node {
 	void *value;
 	struct Node *next;
-} node_t;
+} Node;
 
-node_t *Node_create(void *value);
+Node *Node_create(void *value);
 
 typedef struct {
-	node_t *head;
+	Node *head;
 } LinkedList;
 
-LinkedList *LinkedList_create(node_t *node);
+LinkedList *LinkedList_create(Node *node);
 
 void LinkedList_destroy(LinkedList *list);
 
