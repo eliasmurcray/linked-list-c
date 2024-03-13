@@ -20,11 +20,11 @@ LinkedList *LinkedList_create(node_t *node);
 
 void LinkedList_destroy(LinkedList *list);
 
-void *LinkedList_get(LinkedList *list, size_t index);
+void *LinkedList_get(LinkedList *list, int index);
 
-void LinkedList_insert(LinkedList *list, size_t index, void *value);
+void LinkedList_insert(LinkedList *list, int index, void *value);
 
-void LinkedList_remove(LinkedList *list, size_t index);
+void LinkedList_remove(LinkedList *list, int index);
 
 void LinkedList_append(LinkedList *list, void *value);
 

@@ -40,7 +40,7 @@ void LinkedList_destroy(LinkedList *list) {
 	free(list);
 }
 
-void *LinkedList_get(LinkedList *list, size_t index) {
+void *LinkedList_get(LinkedList *list, int index) {
 	if (list->head == NULL || index < 0)
 		return NULL;
 	if (index == 0) return list->head->value;
@@ -61,5 +61,26 @@ void LinkedList_append(LinkedList *list, void *value) {
 
 	node_t *n = list->head;
 	while (n->next != NULL) n = n->next;
+	n->next = new_node;
+}
+
+void LinkedList_insert(LinkedList *list, int index, void *value) {
+	node_t *new_node = Node_create(value);
+	if (index < 0) {
+		fprintf(stderr, "Failed to insert node: index %d out of range\n", index);
+		return;
+	}
+	node_t *n = list->head;
+	if (n == NULL) {
+		list->head = new_node;
+		return;
+	}
+	const int original_index = index;
+	while (n->next != NULL && --index != 0) n = n->next;
+	if (index != 0) {
+		fprintf(stderr, "Failed to insert node: index %d out of range\n", original_index);
+		return;
+	}
+	new_node->next = n->next;
 	n->next = new_node;
 }

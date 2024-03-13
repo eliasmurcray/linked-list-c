@@ -27,13 +27,18 @@ int main() {
 	LinkedList *list = LinkedList_create(n);
 	LinkedList_append(list, NULL);
 	LinkedList_append(list, &(int){10});
+	print_list(list);
 	void *v = LinkedList_get(list, 1);
 	if (v == NULL) {
-		printf("NULL\n");
+		printf("Value at index 1: NULL\n");
 	} else {
-		printf("%d\n", *(int *)v);
+		printf("Value at index 1: %d\n", *(int *)v);
 	}
+	LinkedList_insert(list, 5, &(int){20});
 	print_list(list);
+	LinkedList_insert(list, 1, &(int){20});
+	print_list(list);
+	LinkedList_insert(list, -1, &(int){15});
 	LinkedList_destroy(list);
 
 	return 0;
