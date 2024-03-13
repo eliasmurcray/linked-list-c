@@ -38,7 +38,7 @@ int main() {
 	print_list(list);
 	LinkedList_insert(list, 0, &(int){20});
 	print_list(list);
-	LinkedList_insert(list, 3, &(int){12});
+	LinkedList_insert(list, 4, &(int){12});
 	print_list(list);
 	LinkedList_insert(list, -1, &(int){15});
 	LinkedList_destroy(list);

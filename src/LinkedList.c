@@ -67,21 +67,41 @@ void LinkedList_append(LinkedList *list, void *value) {
 }
 
 void LinkedList_insert(LinkedList *list, int index, void *value) {
+	if (!list || index < 0) {
+		fprintf(stderr, "Error: Invalid input\n");
+		return;
+	}
+
 	Node *new_node = Node_create(value);
+	if (index == 0) {
+		new_node->next = list->head;
+		list->head = new_node;
+		return;
+	}
+
+	Node *n = list->head;
+	while (n && --index > 0)
+		n = n->next;
+	if (!n) {
+		fprintf(stderr, "Error: Index out of range\n");
+		free(n);
+		return;
+	}
+
+	new_node->next = n->next;
+	n->next = new_node;
+}
+
+void LinkedList_remove(LinkedList *list, int index) {
 	if (index < 0) {
 		fprintf(stderr,
-			"Failed to insert node: index %d out of range\n",
+			"Failed to remove node: index %d out of range\n",
 			index);
 		return;
 	}
 	Node *n = list->head;
 	if (n == NULL) {
-		list->head = new_node;
-		return;
-	}
-	if (index == 0) {
-		new_node->next = n;
-		list->head = new_node;
+		fprintf(stderr, "Failed to remove node: list empty");
 		return;
 	}
 	const int original_index = index;
@@ -89,33 +109,8 @@ void LinkedList_insert(LinkedList *list, int index, void *value) {
 		n = n->next;
 	if (index != 0) {
 		fprintf(stderr,
-			"Failed to insert node: index %d out of range\n",
+			"Failed to remove node: index %d out of range\n",
 			original_index);
 		return;
 	}
-	new_node->next = n->next;
-	n->next = new_node;
-}
-
-void LinkedList_remove(LinkedList *list, int index) {
-	if (index < 0) {
-                fprintf(stderr,
-                        "Failed to remove node: index %d out of range\n",
-                        index);
-                return;
-        }
-	Node *n = list->head;
-	if (n == NULL) {
-		fprintf(stderr, "Failed to remove node: list empty");
-		return;
-	}
-	const int original_index = index;
-	while (n->next != NULL && --index != 0) n = n->next;
-	if (index != 0) {
-		fprintf(stderr,
-                        "Failed to remove node: index %d out of range\n",
-                        original_index);
-                return;	
-	}
-	
 }
